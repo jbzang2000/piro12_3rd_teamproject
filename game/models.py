@@ -10,6 +10,7 @@ class Player(models.Model):
     name = models.CharField(max_length=20)
     win = models.IntegerField(default=0)
     lose = models.IntegerField(default=0)
+    draw = models.IntegerField(default=0)
 
 
 class Game(models.Model):

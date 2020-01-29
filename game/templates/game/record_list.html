@@ -13,10 +13,10 @@
                 {{ game.id }} - {{ game.attacker }} vs {{ game.defender }}
             </td>
             <td>
-                {% if game.attacker == user.name and game.result == 0 %}
+                {% if game.attacker == user_name and game.result == 0 %}
                     진행중..
-                {% elif game.defender == user.name and game.result == 0 %}
-                    <a class="btn btn-outline-light" href="{% url "game:dfs" record.pk %}" role="button">대응하기</a>
+                {% elif game.defender == user_name and game.result == 0 %}
+                    <a class="btn btn-outline-light" href="/dfs/{{ game.id }}/" role="button">대응하기</a>
                 {% else %}
                     {% if game.result == 1 %}
                         결과 : 승
@@ -28,10 +28,10 @@
                 {% endif %}
             </td>
             <td>
-            <a class="btn btn-outline-light" href="{% url 'game:record_info' record.pk %}" role="button">게임정보</a>
+            <a class="btn btn-outline-light" href="/record/info/{{ game.id }}/" role="button">게임정보</a>
             </td>
         </tr>
-    {%  endfor %}
+    {% endfor %}
 </tbody>
 </table>
 {% endblock %}

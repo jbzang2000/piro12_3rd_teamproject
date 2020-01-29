@@ -18,6 +18,7 @@ def record_list(request):
     # User.objects.get(username=request.user.get_username())
     data = {
         'games': games,
+        'user_name':request.user.get_username()
     }
     return render(request, 'game/record_list.html', data)
 
@@ -41,7 +42,7 @@ def atk(request):
         game_choice = int(request.POST.get('rsp'))
         user = request.user.get_username()
         Game.objects.create(attacker=user, atk=game_choice, defender=Player.objects.get(pk=oppo).name)
-        return redirect(reverse('atk_fin'))
+        return redirect(reverse('game:atk_fin'))
     return render(request, 'game/atk.html', data)
 
 
@@ -53,12 +54,8 @@ def sign(request):
     return redirect(reverse('game:home'))
 
 
-def atk_fin(request, pk):
-    game = Game.objects.get(pk=pk)
-    data = {
-        'game': game
-    }
-    return render(request, 'game/atk_fin.html', data)
+def atk_fin(request):
+    return render(request, 'game/atk_fin.html')
 
 
 def dfs(request, pk):
@@ -93,15 +90,15 @@ def dfs(request, pk):
                     user.win += 1
                     break
         game.save()
-        return redirect(reverse('dfs_fin', kwargs={'pk': game.pk}))
+        return redirect(reverse('game:dfs_fin', kwargs={'pk': game.pk}))
     return render(request, 'game/dfs.html', data)
 
 
-def dfs_list(request, username):
+def dfs_list(request):
     all_game = Game.objects.all()
     games = []
     for game in all_game:
-        if game.defender == username and not game.result:
+        if game.defender == request.user.get_username() and not game.result:
             games.append(game)
 
     data = {

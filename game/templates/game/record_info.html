@@ -1,4 +1,5 @@
 {% extends 'laylay.html' %}
+
 {% block content %}
     <div class="card text-white bg-dark border-light">
         <div class="card-header">Header</div>
@@ -25,11 +26,11 @@
                 {% endif %}
                 <br/>
                 결과 :
-                {% if game.result == 1 %}
+                {% if record.result == 1 %}
                     승
-                {% elif game.result == 2 %}
+                {% elif record.result == 2 %}
                     패
-                {% elif game.result == 3 %}
+                {% elif record.result == 3 %}
                     무
                 {% endif %}
             </p>

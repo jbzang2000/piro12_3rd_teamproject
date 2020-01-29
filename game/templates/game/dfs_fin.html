@@ -1,23 +1,23 @@
 {% extends 'laylay.html' %}
-{% if game.result == 2 %}
-    <div>승리하셨습니다</div>
-{% elif game.result == 1 %}
-    <div>패배하셨습니다</div>
-{% else %}
-    <div>무승부입니다</div>
-{% endif %}
+{% block content %}
+    {% if game.result == 2 %}
+        <div>승리하셨습니다</div>
+    {% elif game.result == 1 %}
+        <div>패배하셨습니다</div>
+    {% else %}
+        <div>무승부입니다</div>
+    {% endif %}
 
-<div>
+    <div>
     <span>
         <button onclick="location.href='/dfs/'">
             더 대응하기
         </button>
     </span>
-    <span>
+        <span>
         <button onclick="location.href='/'">
             홈으로
         </button>
     </span>
-
-
-</div>
+    </div>
+{% endblock %}
