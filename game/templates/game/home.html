@@ -1,0 +1,13 @@
+{% extends 'laylay.html' %}
+{% block content %}
+    <div class="card text-white bg-dark">
+        <div class="card-body">
+            <h1 class="card-title">전 세계 피로그래머와 가위바위보를 즐겨보세요!</h1>
+            <br />
+            <a class="btn btn-outline-light" href="{% url 'game:atk' %}" role="button">공격하기</a>
+            <br />
+            <br />
+            <a class="btn btn-outline-light" href="{% url 'game:dfs_list' %}" role="button">대응하기</a>
+        </div>
+    </div>
+{% endblock %}

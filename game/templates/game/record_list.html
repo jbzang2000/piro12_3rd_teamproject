@@ -1,0 +1,37 @@
+{% extends 'laylay.html' %}
+{% block content %}
+<table class="table table-borderless table-dark table-hover">
+<thead>
+    <tr>
+        <th scope="col">전적 페이지</th>
+    </tr>
+</thead>
+<tbody>
+    {% for game in games %}
+        <tr>
+            <td>
+                {{ game.id }} - {{ game.attacker }} vs {{ game.defender }}
+            </td>
+            <td>
+                {% if game.attacker == user.name and game.result == 0 %}
+                    진행중..
+                {% elif game.defender == user.name and game.result == 0 %}
+                    <a class="btn btn-outline-light" href="{% url "game:dfs" record.pk %}" role="button">대응하기</a>
+                {% else %}
+                    {% if game.result == 1 %}
+                        결과 : 승
+                    {% elif game.result == 2 %}
+                        결과 : 패
+                    {% elif game.result == 3 %}
+                        결과 : 무
+                    {% endif %}
+                {% endif %}
+            </td>
+            <td>
+            <a class="btn btn-outline-light" href="{% url 'game:record_info' record.pk %}" role="button">게임정보</a>
+            </td>
+        </tr>
+    {%  endfor %}
+</tbody>
+</table>
+{% endblock %}

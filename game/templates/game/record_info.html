@@ -1,0 +1,40 @@
+{% extends 'laylay.html' %}
+{% block content %}
+    <div class="card text-white bg-dark border-light">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+            <h2 class="card-title">게임 정보</h2>
+            <hr/>
+            <p class="card-text">
+                {{ record.attacker }} :
+                {% if record.atk == 0 %}
+                    가위
+                {% elif record.atk == 1 %}
+                    바위
+                {% else %}
+                    보
+                {% endif %}
+                <br/>
+                {{ record.defender }} :
+                {% if record.dfs == 0 %}
+                    가위
+                {% elif record.dfs == 1 %}
+                    바위
+                {% else %}
+                    보
+                {% endif %}
+                <br/>
+                결과 :
+                {% if game.result == 1 %}
+                    승
+                {% elif game.result == 2 %}
+                    패
+                {% elif game.result == 3 %}
+                    무
+                {% endif %}
+            </p>
+        </div>
+    </div>
+    <br/>
+    <a class="btn btn-outline-light" href="{% url 'game:record_list' %}" role="button">돌아가기</a>
+{% endblock %}

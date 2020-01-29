@@ -1,0 +1,16 @@
+{% extends 'laylay.html' %}
+{% block content %}
+    <div>
+        <h5>{{ game.attacker }} 님의 공격을 받았습니다</h5>
+        <form action="{% url 'game:dfs' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <span>
+                <select name="rsp" id="rsp">
+                 <option value="0" selected>가위</option><option value="1">바위</option>
+            <option value="2">보</option>
+                </select>
+         </span>
+            <span> 를 냅니다. </span>
+        </form>
+    </div>
+{% endblock %}
