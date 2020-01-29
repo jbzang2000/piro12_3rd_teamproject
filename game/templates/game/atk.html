@@ -1,0 +1,24 @@
+{% extends "laylay.html" %}
+{% block content %}
+<form method="POST" action="">
+{% csrf_token %}
+    <div>
+        <select name="oppo" id="oppo">
+            {% for dfs_choice in dfs_choices %}
+                {% if user_name != dfs_choice.name %}
+                    <option value="{{ dfs_choice.pk }}">{{ dfs_choice.name }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        <select name="rsp" id="rsp">a
+            <option value="0" selected>가위</option>
+            <option value="1">바위</option>
+            <option value="2">보</option>
+        </select>
+    </div>
+
+    <div>
+        <button type="submit">마 들어오라</button>
+    </div>
+</form>
+{% endblock %}

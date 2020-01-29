@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.urls import reverse
-
+from django.contrib.auth import get_user_model, get_user
 from game.models import Game, Player
 
 
@@ -15,7 +15,7 @@ def login(request):
 
 def record_list(request):
     games = Game.objects.all()
-    #User.objects.get(username=request.user.get_username())
+    # User.objects.get(username=request.user.get_username())
     data = {
         'games': games,
     }
@@ -30,16 +30,27 @@ def record_info(request, pk):
     return render(request, 'game/record_info.html', data)
 
 
-def atk(request, pk):
+def atk(request):
     dfs_choices = Player.objects.all()
     data = {
-        'dfs_choices': dfs_choices
+        'dfs_choices': dfs_choices,
+        'user_name': request.user.get_username()
     }
     if request.method == 'POST':
         oppo = request.POST.get('oppo')
         game_choice = int(request.POST.get('rsp'))
-        return redirect('game:atk_fin', atk.pk)
+        user = request.user.get_username()
+        Game.objects.create(attacker=user, atk=game_choice, defender=Player.objects.get(pk=oppo).name)
+        return redirect(reverse('atk_fin'))
     return render(request, 'game/atk.html', data)
+
+
+def sign(request):
+    try:
+        Player.objects.create(name=r.user.get_username())
+    except:
+        pass
+    return redirect(reverse('game:home'))
 
 
 def atk_fin(request, pk):

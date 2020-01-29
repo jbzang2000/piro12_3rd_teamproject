@@ -1,0 +1,12 @@
+{% extends 'laylay.html' %}
+
+{% block content %}
+    {% load socialaccount %}
+    {% providers_media_js %}
+    <div>
+        <a class="btn btn-outline-light" href="{% provider_login_url 'google' method='oauth2' %}" role="button">공격하기</a>
+    </div>
+    <div>
+        <a class="btn btn-outline-light" href="{% provider_login_url 'kakao' method='oauth2' %}" role="button">공격하기</a>
+    </div>
+{% endblock %}
