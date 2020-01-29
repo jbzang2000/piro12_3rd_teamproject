@@ -15,5 +15,7 @@ urlpatterns = [
     path('dfs/<int:pk>/', views.dfs, name='dfs'),                   # 대응 화면
     path('dfs/<int:pk>/fin/', views.dfs_fin, name='dfs_fin'),     # 대응 후 선택 화면(추가 대응 or 홈) + 게임 결과
     path('accounts/', include('allauth.urls')),
+    path('accounts/profile/#', views.sign),
+    path('accounts/profile/', views.sign)
 
 ]

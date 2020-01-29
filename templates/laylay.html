@@ -85,8 +85,18 @@
                              src="http://post.phinf.naver.net/MjAxOTA1MjBfMjYz/MDAxNTU4MzM0NzMzMDYw.tyGpC1Mza59d0bh2c0QaeJuaH271WMlDW6TT36hPaiEg.fygUEYupLVFHMloWX0pKxZg3FgjaujXWCTvHyEvbCVIg.JPEG/IRfmY-lxcpzq_fsvytzVdAilSKyc.jpg"
                              alt=""></a>
         </div>
-        <div class="nav-right">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="/accounts/login">로그인</a></button>
+        <div class="nav">
+            {% if user.is_authenticated %}
+                <span>{{ user }}님이 로그인중입니다.</span>
+                <span><button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a
+                        href="/accounts/logout">로그아웃</a></button></span>
+                <span><button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a
+                        href="{% url "game:record_list" %}">전적보기</a></button></span>
+            {% endif %}
+            {% if not user.is_authenticated %}
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="{% url "game:login" %}">로그인</a>
+                </button>
+            {% endif %}
         </div>
     </div>
 </div>

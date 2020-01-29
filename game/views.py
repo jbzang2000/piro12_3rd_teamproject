@@ -14,11 +14,15 @@ def login(request):
 
 
 def record_list(request):
-    games = Game.objects.all()
-    # User.objects.get(username=request.user.get_username())
+    allgames = Game.objects.all()
+    games = []
+    for game in allgames:
+        if game.attacker == request.user.get_username() or game.defender == request.user.get_username():
+            games.append(game)
+        # User.objects.get(username=request.user.get_username())
     data = {
         'games': games,
-        'user_name':request.user.get_username()
+        'user_name': request.user.get_username()
     }
     return render(request, 'game/record_list.html', data)
 
@@ -48,7 +52,7 @@ def atk(request):
 
 def sign(request):
     try:
-        Player.objects.create(name=r.user.get_username())
+        Player.objects.create(name=request.user.get_username())
     except:
         pass
     return redirect(reverse('game:home'))
