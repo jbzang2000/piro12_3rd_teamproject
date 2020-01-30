@@ -1,5 +1,9 @@
 {% extends 'laylay.html' %}
 {% block content %}
+    <div><SPAN>총전적 : </SPAN>
+    <span>{{ player.win }}승</span>
+    <SPAN>{{ player.draw }}무</SPAN>
+    <span>{{ player.lose }}패</span></div>
 <table class="table table-borderless table-dark table-hover">
 <thead>
     <tr>
@@ -13,9 +17,9 @@
                 {{ game.id }} - {{ game.attacker }} vs {{ game.defender }}
             </td>
             <td>
-                {% if game.attacker == user_name and game.result == 0 %}
+                {% if game.attacker == player.name and not game.result %}
                     진행중..
-                {% elif game.defender == user_name and game.result == 0 %}
+                {% elif game.defender == player.name and not game.result %}
                     <a class="btn btn-outline-light" href="/dfs/{{ game.id }}/" role="button">대응하기</a>
                 {% else %}
                     {% if game.result == 1 %}

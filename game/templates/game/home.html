@@ -1,17 +1,18 @@
 {% extends 'laylay.html' %}
 {% block content %}
-    <div class="card text-white bg-dark">
-        <div class="card-body">
-            <h1 class="card-title">전 세계 피로그래머와 가위바위보를 즐겨보세요!</h1>
-            <br />
+    <div class="text-white bg-dark" style="min-height: 80vh; text-align: center; padding-top:100px;">
+            <h1 class="card-title" style="text-align: center;">전 세계 피로그래머와 가위바위보를 즐겨보세요!</h1>
+            <br/>
             {% if user.is_authenticated %}
-            <a class="btn btn-outline-light" href="{% url 'game:atk' %}" role="button">공격하기</a>
-            <br />
-            <br />
-            <a class="btn btn-outline-light" href="{% url 'game:dfs_list' %}" role="button">대응하기</a>
+                <a class="btn btn-outline-light" style="width: 30%;" href="{% url 'game:atk' %}" role="button">공격하기</a>
+                <br/>
+                <br/>
+                <a class="btn btn-outline-light" style="width: 30%;" href="{% url 'game:dfs_list' %}"
+                   role="button">대응하기</a>
             {% else %}
-                <div>로그인을 해주세요!</div>
+                <a style="margin-top: 50px; width:30%;" class="btn btn-outline-light" href="{% url "game:login" %}" role="button"><h2>로그인</h2></a>
             {% endif %}
-        </div>
+
+
     </div>
 {% endblock %}

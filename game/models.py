@@ -6,7 +6,6 @@ from django.db import models
 
 
 class Player(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
     win = models.IntegerField(default=0)
     lose = models.IntegerField(default=0)
@@ -21,5 +20,5 @@ class Game(models.Model):
     dfs = models.IntegerField(null=True)
     # 가위 0 바위 1 보 2
     result = models.IntegerField(null=True)
-    # /(0 null 경기진행중:) /1:공격자가 승리 2:수비자가 승리 3:무승부
+    # /( null 경기진행중:) /1:공격자가 승리 2:수비자가 승리 3:무승부
 

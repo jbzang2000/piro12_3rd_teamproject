@@ -1,7 +1,5 @@
-from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.contrib.auth import get_user_model, get_user
 from game.models import Game, Player
 
 
@@ -15,6 +13,7 @@ def login(request):
 
 def record_list(request):
     allgames = Game.objects.all()
+    player = Player.objects.get(name=request.user.get_username())
     games = []
     for game in allgames:
         if game.attacker == request.user.get_username() or game.defender == request.user.get_username():
@@ -22,7 +21,7 @@ def record_list(request):
         # User.objects.get(username=request.user.get_username())
     data = {
         'games': games,
-        'user_name': request.user.get_username()
+        'player': player,
     }
     return render(request, 'game/record_list.html', data)
 
@@ -52,9 +51,11 @@ def atk(request):
 
 def sign(request):
     try:
-        Player.objects.create(name=request.user.get_username())
+        Player.objects.get(name=request.user.get_username())
+
     except:
-        pass
+        Player.objects.create(name=request.user.get_username())
+
     return redirect(reverse('game:home'))
 
 
@@ -75,24 +76,28 @@ def dfs(request, pk):
             for user in users:
                 if game.attacker == user.name or game.defender == user.name:
                     user.draw += 1
+                    user.save()
         elif game.atk - game.dfs == 1 or game.atk - game.dfs == -2:
             game.result = 1
             for user in users:
                 if game.attacker == user.name:
                     user.win += 1
-                    break
+                    user.save()
                 if game.defender == user.name:
                     user.lose += 1
-                    break
+                    user.save()
+
         else:
             game.result = 2
             for user in users:
                 if game.attacker == user.name:
                     user.lose += 1
-                    break
+                    user.save()
+
                 if game.defender == user.name:
                     user.win += 1
-                    break
+                    user.save()
+
         game.save()
         return redirect(reverse('game:dfs_fin', kwargs={'pk': game.pk}))
     return render(request, 'game/dfs.html', data)

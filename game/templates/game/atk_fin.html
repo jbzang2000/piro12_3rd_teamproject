@@ -1,19 +1,21 @@
 {% extends 'laylay.html' %}
 {% block content %}
-공격했습니다! 하하하
 
-<div>
-    <span>
+
+    <div class="bg-dark text-white" style="min-height: 80vh;">
+        <div style="padding-top: 200px; text-align:center; border: 1px solid #ffffff;">
+            <h1>공격했습니다! 하하하</h1>
+            <span>
         <button onclick="location.href='/atk/'">
             더 공격하기
         </button>
     </span>
-    <span>
+            <span>
         <button onclick="location.href='/'">
             홈으로
         </button>
     </span>
+        </div>
 
-
-</div>
+    </div>
 {% endblock %}

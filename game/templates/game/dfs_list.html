@@ -1,18 +1,20 @@
 {% extends 'laylay.html' %}
 {% block content %}
-    <div>
-        <div>
-            <h3>대응페이지</h3>
-        </div>
-        {% for game in games %}
+    <div class="bg-dark text-white" style="min-height: 80vh; text-align: center;">
+        <div style="padding-top: 100px;">
             <div>
-                <span>{{ game.id }} - {{ game.attacker }} vs {{ game.defender }}</span>
-                <span>
+                <h3>대응페이지</h3>
+            </div>
+            {% for game in games %}
+                <div style="padding-top: 10px;">
+                    <span>{{ game.id }} - {{ game.attacker }} vs {{ game.defender }}</span>
+                    <span>
                     <button onclick="location.href='/dfs/{{ game.id }}/'">대응하기
 
                     </button>
                 </span>
-            </div>
-        {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

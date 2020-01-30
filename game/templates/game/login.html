@@ -3,10 +3,16 @@
 {% block content %}
     {% load socialaccount %}
     {% providers_media_js %}
-    <div>
-        <a class="btn btn-success my-2 my-sm-0" href="{% provider_login_url 'google' method='oauth2' %}" role="button">구글로 로그인하기</a>
-    </div>
-    <div>
-        <a class="btn btn-success my-2 my-sm-0" href="{% provider_login_url 'kakao' method='oauth2' %}" role="button">카카오로 로그인하기</a>
+    <div class="bg-dark" style="min-height: 80vh;">
+    <div style="padding-top: 200px; text-align: center;">
+        <div>
+            <a class="btn btn-success my-2 my-sm-0" href="{% provider_login_url 'google' method='oauth2' %}"
+               role="button">구글로 로그인하기</a>
+        </div>
+        <div style="padding-top: 16px;">
+            <a class="btn btn-success my-2 my-sm-0" href="{% provider_login_url 'kakao' method='oauth2' %}"
+               role="button">카카오로 로그인하기</a>
+        </div>
+        </div>
     </div>
 {% endblock %}

@@ -1,12 +1,12 @@
 {% extends 'laylay.html' %}
 
 {% block content %}
-    <div class="card text-white bg-dark border-light">
-        <div class="card-header">Header</div>
-        <div class="card-body">
-            <h2 class="card-title">게임 정보</h2>
+    <div class="card text-white bg-dark border-light" style="min-height: 80vh;">
+
+        <div class="card-body" style="text-align: center; padding-top: 160px;">
+            <h1 class="card-title">게임 정보</h1>
             <hr/>
-            <p class="card-text">
+            <h4 class="card-text">
                 {{ record.attacker }} :
                 {% if record.atk == 0 %}
                     가위
@@ -21,19 +21,20 @@
                     가위
                 {% elif record.dfs == 1 %}
                     바위
-                {% else %}
+                {% elif record.dfs == 2 %}
                     보
+                {% else %}
+                    ??
                 {% endif %}
                 <br/>
-                결과 :
                 {% if record.result == 1 %}
-                    승
+                   결과 :   승
                 {% elif record.result == 2 %}
-                    패
+                   결과 :  패
                 {% elif record.result == 3 %}
-                    무
+                   결과 :  무
                 {% endif %}
-            </p>
+            </h4>
         </div>
     </div>
     <br/>

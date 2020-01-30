@@ -1,19 +1,22 @@
 {% extends 'laylay.html' %}
 {% block content %}
-    <div>
-        <h5>{{ game.attacker }} 님의 공격을 받았습니다</h5>
-        <form action="" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <span>
+    <div class="bg-dark text-white" style="min-height: 80vh;">
+        <div style="padding-top: 200px; text-align:center;">
+            <h3>{{ game.attacker }} 님의 공격을 받았습니다</h3>
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <span>
                 <select name="rsp" id="rsp">
                  <option value="0" selected>가위</option><option value="1">바위</option>
             <option value="2">보</option>
                 </select>
          </span>
-            <span> 를 냅니다. </span>
-            <div>
-                <button type="submit">마 들어오라</button>
-            </div>
-        </form>
+                <span> 를 냅니다. </span>
+
+                <div style="padding-top: 10px;">
+                    <button class="btn btn-danger" type="submit">마 들어오라</button>
+                </div>
+            </form>
+        </div>
     </div>
 {% endblock %}
